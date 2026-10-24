@@ -1,0 +1,648 @@
+<!doctype html>
+<html lang="en-ZA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#FFD21A">
+<style>[hidden]{display:none!important}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}img{max-width:100%}</style>
+<title>Alberhart Tennis Club</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Alberhart Tennis Club, Randhart, Alberton. Saturday social tennis, morning tennis, leagues, club championships and coaching. All levels welcome.">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&family=Geist:wght@400..700&family=Geist+Mono:wght@400..600&display=swap">
+<style>
+/* Layout concept: a white club app in the club's own colours. The ball logo opens the home tab,
+   a bento board carries only the essentials, and everything else sits behind tabs.
+   Brand colours sampled from the logo on the 2026/27 application form. */
+:root{
+  --paper:#FFFFFF; --soft:#F5F4F0; --ink:#1F1A17; --muted:#67625B; --line:#E6E3DC;
+  --y:#FFF500; --y-deep:#D8CF00; --k:#1F1A17; --k-2:#2B2521; --k-muted:#ADA79E; --y-ink:#4D4800;
+  --f-display:"Bricolage Grotesque","Arial Narrow",Arial,sans-serif;
+  --f-body:"Geist","Segoe UI",Helvetica,Arial,sans-serif;
+  --f-mono:"Geist Mono",ui-monospace,Consolas,monospace;
+  --r:22px; --ease:cubic-bezier(.2,.8,.2,1);
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 1rem/1.6 var(--f-body);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+button{font:inherit;color:inherit}
+img{max-width:100%;display:block}
+:focus-visible{outline:3px solid var(--k);outline-offset:3px;border-radius:8px}
+h1,h2,h3{font-family:var(--f-display);margin:0;text-wrap:balance;letter-spacing:-.02em}
+p{margin:0}
+.wrap{max-width:1200px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.eyebrow{font:500 .74rem/1 var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* ---------- header + tabs ---------- */
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--paper)}
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;padding-block:12px;background:linear-gradient(var(--paper) 60%,rgba(255,255,255,0))}
+.bar{display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.82);backdrop-filter:saturate(1.4) blur(14px);-webkit-backdrop-filter:saturate(1.4) blur(14px);border:1px solid var(--line);border-radius:999px;padding:7px 8px 7px 8px;box-shadow:0 10px 30px -18px rgba(31,26,23,.35)}
+.logo{display:flex;align-items:center;gap:10px;flex:none;cursor:pointer;background:none;border:0;padding:0;text-align:left}
+.logo img{width:40px;height:40px;border-radius:50%;box-shadow:0 0 0 2px var(--k)}
+.logo b{font:800 1.05rem/1 var(--f-display);letter-spacing:-.01em}
+.logo small{display:block;font:500 .62rem/1.3 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.tabs{position:relative;display:flex;gap:2px;margin:0 auto;overflow-x:auto;scrollbar-width:none;min-width:0}
+.tabs::-webkit-scrollbar{display:none}
+.tab{position:relative;z-index:1;border:0;background:none;padding:9px 14px;border-radius:999px;font-weight:550;font-size:.93rem;color:var(--muted);cursor:pointer;white-space:nowrap;transition:color .25s var(--ease)}
+.tab:hover{color:var(--ink)}
+.tab[aria-selected="true"]{color:var(--y)}
+.pill{position:absolute;z-index:0;top:0;left:0;height:100%;border-radius:999px;background:var(--k);transition:transform .45s var(--ease),width .45s var(--ease);will-change:transform}
+.cta{display:inline-flex;align-items:center;gap:8px;border:0;border-radius:999px;padding:12px 20px;font-weight:650;font-size:.95rem;cursor:pointer;text-decoration:none;transition:transform .2s var(--ease),box-shadow .2s var(--ease),background .2s}
+.cta:hover{transform:translateY(-1px)}
+.cta-y{background:var(--y);color:var(--k);box-shadow:inset 0 0 0 1.5px var(--k)}
+.cta-y:hover{box-shadow:inset 0 0 0 1.5px var(--k),3px 3px 0 var(--k)}
+.cta-k{background:var(--k);color:var(--y)}
+.cta-k:hover{box-shadow:3px 3px 0 var(--y-deep)}
+.cta-o{background:transparent;color:var(--k);box-shadow:inset 0 0 0 1.5px var(--k)}
+.cta-o:hover{background:var(--soft)}
+.cta .arr{transition:transform .2s var(--ease)}
+.cta:hover .arr{transform:translateX(3px)}
+.bar .cta{flex:none;padding:10px 16px}
+@media (max-width:980px){
+  .bar{flex-wrap:wrap;border-radius:24px;row-gap:6px}
+  .tabs{order:3;flex-basis:100%;margin:0;padding-bottom:2px}
+  .logo{margin-right:auto}
+}
+
+/* ---------- views ---------- */
+.view{animation:viewIn .5s var(--ease) both}
+@keyframes viewIn{from{opacity:.001;transform:translateY(12px)}to{opacity:1;transform:none}}
+.page-head{padding-block:40px 28px;display:grid;gap:12px}
+.page-head h2{font-size:clamp(2.2rem,5.5vw,4rem);font-weight:800;font-stretch:85%;line-height:.98}
+.page-head p.lede{color:var(--muted);max-width:60ch;font-size:1.08rem}
+.hl{background:linear-gradient(transparent 56%,var(--y) 56%,var(--y) 92%,transparent 92%);padding:0 .08em}
+section.pad{padding-bottom:72px}
+
+/* ---------- home intro ---------- */
+.intro{display:grid;grid-template-columns:auto 1fr;gap:clamp(24px,4vw,56px);align-items:center;padding-block:36px 44px}
+.crest{position:relative;width:clamp(150px,22vw,250px);aspect-ratio:1;max-width:100%}
+.crest img{width:100%;height:100%;border-radius:50%;box-shadow:0 0 0 5px var(--k),0 28px 40px -24px rgba(31,26,23,.55);transition:transform .6s var(--ease)}
+.crest:hover img{transform:rotate(-8deg)}
+.crest::after{content:"";position:absolute;inset:-14px;border-radius:50%;border:1.5px dashed var(--line)}
+.badge{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:999px;padding:6px 12px 6px 6px;font-size:.85rem;font-weight:550}
+.badge i{background:var(--y);border:1px solid var(--k);border-radius:999px;padding:2px 9px;font:600 .7rem/1.4 var(--f-mono);font-style:normal;letter-spacing:.06em;text-transform:uppercase}
+.intro h1{font-size:clamp(3rem,8vw,6.2rem);font-weight:800;font-stretch:78%;line-height:.88;letter-spacing:-.035em;margin:18px 0 18px}
+.intro h1 small{display:block;font-size:.42em;font-weight:600;font-stretch:100%;letter-spacing:-.01em;margin-top:.25em;color:var(--muted)}
+.intro p.sub{font-size:1.12rem;color:var(--muted);max-width:52ch}
+.intro .ctas{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}
+@media (max-width:700px){.intro{grid-template-columns:1fr;justify-items:start;padding-top:20px}.crest{width:130px}}
+
+/* bento */
+.bento{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.tile{position:relative;border-radius:var(--r);padding:24px;border:1px solid var(--line);background:var(--paper);display:flex;flex-direction:column;gap:10px;min-width:0;text-align:left;transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
+.tile.link{cursor:pointer}
+.tile.link:hover{transform:translateY(-3px);box-shadow:0 22px 40px -28px rgba(31,26,23,.5)}
+.tile .go{position:absolute;top:18px;right:18px;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:var(--soft);transition:transform .3s var(--ease),background .3s}
+.tile.link:hover .go{transform:rotate(-45deg);background:var(--y)}
+.tile h3{font-size:1.35rem;font-weight:700;font-stretch:90%}
+.tile p{color:var(--muted);font-size:.95rem}
+.tile .big{font:800 clamp(2.2rem,4vw,3.2rem)/.95 var(--f-display);font-stretch:80%;letter-spacing:-.03em}
+.tile.dark{background:var(--k);color:#fff;border-color:var(--k)}
+.tile.dark p,.tile.dark .eyebrow{color:var(--k-muted)}
+.tile.dark .big{color:var(--y)}
+.tile.dark .go{background:var(--k-2);color:#fff}
+.tile.yel{background:var(--y);border-color:var(--k)}
+.tile.yel p,.tile.yel .eyebrow{color:var(--y-ink)}
+.tile.yel .go{background:rgba(255,255,255,.6)}
+.tile.yel.link:hover .go{background:var(--k);color:var(--y)}
+.span2{grid-column:span 2}
+.status{display:inline-flex;align-items:center;gap:8px;font:500 .85rem/1.2 var(--f-mono);color:#fff;background:var(--k-2);border-radius:999px;padding:7px 12px;align-self:flex-start;margin-top:auto}
+.status i{width:9px;height:9px;border-radius:50%;background:var(--y);flex:none}
+.status.on i{background:#3BD16F;box-shadow:0 0 0 0 rgba(59,209,111,.6);animation:ping 1.6s infinite}
+@keyframes ping{70%{box-shadow:0 0 0 8px rgba(59,209,111,0)}100%{box-shadow:0 0 0 0 rgba(59,209,111,0)}}
+.tile .visit{display:flex;gap:6px;align-items:baseline;font-size:.95rem}
+.tile .visit b{font:700 1.1rem/1 var(--f-mono)}
+.wkdays{display:flex;gap:6px;flex-wrap:wrap}
+.wkdays span{border:1.5px solid var(--k);border-radius:999px;padding:4px 10px;font:600 .8rem/1.2 var(--f-mono)}
+@media (max-width:980px){.bento{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.bento{grid-template-columns:1fr}.span2{grid-column:auto}}
+
+/* ---------- play ---------- */
+.playgrid{display:grid;grid-template-columns:1.3fr 1fr;gap:14px}
+@media (max-width:860px){.playgrid{grid-template-columns:1fr}}
+.card{border:1px solid var(--line);border-radius:var(--r);padding:26px;min-width:0}
+.card.dark{background:var(--k);color:#fff;border-color:var(--k)}
+.card.dark .eyebrow{color:var(--y)}
+.card.yel{background:var(--y);border-color:var(--k)}
+.card.yel .eyebrow{color:var(--y-ink)}
+.card h3{font-size:1.4rem;font-weight:700;font-stretch:90%}
+.when{font:800 clamp(2.6rem,6vw,4.4rem)/.92 var(--f-display);font-stretch:78%;letter-spacing:-.03em;margin:14px 0 6px}
+.card.dark .when{color:var(--y)}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-top:22px}
+.fact{border-radius:16px;padding:14px 16px;display:grid;gap:4px}
+.card.dark .fact{background:var(--k-2)}
+.card.yel .fact{background:rgba(255,255,255,.55)}
+.fact span{font:500 .7rem/1 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;opacity:.75}
+.fact b{font:700 1.3rem/1.1 var(--f-display)}
+.contact-line{margin-top:20px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center;padding-top:16px;border-top:1px solid rgba(31,26,23,.2)}
+.card.dark .contact-line{border-top-color:#3A332E}
+.contact-line a{font-family:var(--f-mono);text-decoration:none;background:var(--k);color:var(--y);padding:8px 12px;border-radius:999px;white-space:nowrap}
+.card.dark .contact-line a{background:var(--y);color:var(--k)}
+
+/* ---------- tables ---------- */
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r)}
+table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums}
+th,td{padding:14px 18px;text-align:left;border-bottom:1px solid var(--line)}
+thead th{font:500 .72rem/1.2 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);background:var(--soft);white-space:nowrap}
+tbody tr:last-child>*{border-bottom:0}
+.fees th,.fees td{white-space:nowrap}
+.fees td{font-family:var(--f-mono);text-align:right}
+.fees thead th:not(:first-child){text-align:right}
+.fees tr.tot>*{background:var(--k);color:#fff;font-weight:700}
+.fees tr.tot td{color:var(--y)}
+.fees .na{font-family:var(--f-body);color:var(--muted);font-size:.88rem}
+.fees tr.tot .na{color:var(--k-muted)}
+
+/* membership */
+.plans{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:14px}
+.plan{border:1px solid var(--line);border-radius:var(--r);padding:22px;display:grid;gap:6px;align-content:start;min-width:0}
+.plan .n{font:700 1.05rem/1.2 var(--f-display)}
+.plan .p{font:800 2.3rem/1 var(--f-display);font-stretch:80%;letter-spacing:-.02em}
+.plan .s{color:var(--muted);font-size:.86rem}
+.plan.feat{background:var(--y);border-color:var(--k)}
+.plan.feat .s{color:var(--y-ink)}
+@media (max-width:860px){.plans{grid-template-columns:1fr 1fr}}
+.seg{display:inline-flex;background:var(--soft);border:1px solid var(--line);border-radius:999px;padding:4px;gap:2px;margin-bottom:14px}
+.seg button{border:0;background:none;border-radius:999px;padding:8px 14px;font-weight:600;font-size:.88rem;color:var(--muted);cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--k);color:var(--y)}
+.notes{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:14px}
+.note{background:var(--soft);border-radius:16px;padding:16px 18px;font-size:.93rem;color:var(--muted)}
+.note b{color:var(--ink);display:block;margin-bottom:2px}
+.split{display:grid;grid-template-columns:1.2fr 1fr;gap:14px;margin-top:28px}
+@media (max-width:860px){.split{grid-template-columns:1fr}}
+ol.steps{list-style:none;margin:18px 0 0;padding:0;display:grid;gap:18px;counter-reset:s}
+ol.steps li{display:grid;grid-template-columns:44px 1fr;gap:14px;counter-increment:s}
+ol.steps li::before{content:counter(s,decimal-leading-zero);width:44px;height:44px;border-radius:14px;display:grid;place-items:center;background:var(--y);border:1.5px solid var(--k);font:700 .9rem/1 var(--f-mono)}
+ol.steps b{display:block}
+ol.steps p{color:var(--muted);font-size:.95rem}
+ol.steps a{font-weight:600;color:var(--ink)}
+dl.kv{display:grid;grid-template-columns:auto 1fr;gap:10px 18px;margin:18px 0 0}
+dl.kv dt{color:var(--k-muted);font-size:.9rem}
+dl.kv dd{margin:0;font-family:var(--f-mono);overflow-wrap:anywhere}
+.ghost{margin-top:18px;border:1px solid #4A423C;background:transparent;color:#fff;border-radius:999px;padding:10px 16px;font-weight:600;cursor:pointer}
+.ghost:hover{border-color:var(--y);color:var(--y)}
+.ghost.l{border-color:var(--line);color:var(--ink)}
+.ghost.l:hover{border-color:var(--k);background:var(--y)}
+
+/* coaching */
+.coach{display:grid;grid-template-columns:1.3fr 1fr;gap:14px}
+@media (max-width:860px){.coach{grid-template-columns:1fr}}
+.coach .big{font:800 clamp(2rem,4.4vw,3.4rem)/.95 var(--f-display);font-stretch:80%;letter-spacing:-.03em;margin-top:14px}
+.coach .big em{font-style:normal;color:var(--y)}
+
+/* competitions */
+.leagues{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:40px}
+@media (max-width:860px){.leagues{grid-template-columns:1fr}}
+.chip{display:inline-block;font:600 .68rem/1 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;padding:6px 9px;border-radius:999px;background:var(--y);border:1px solid var(--k);color:var(--k);margin-bottom:8px}
+.draw td,.draw th{vertical-align:top}
+.draw tbody th{font-weight:650;white-space:nowrap}
+.draw td.w{font-weight:600}
+.draw td.w::before{content:"";display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--y);box-shadow:inset 0 0 0 1.5px var(--k);margin-right:9px;vertical-align:0}
+.draw td.r{color:var(--muted)}
+.chk{font:600 .62rem/1 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;background:var(--soft);border:1px solid var(--line);padding:3px 6px;border-radius:999px;margin-left:6px;vertical-align:2px}
+.res-head{display:flex;justify-content:space-between;align-items:end;gap:14px;flex-wrap:wrap;margin-bottom:14px}
+.res-head h3{font-size:1.8rem;font-weight:800;font-stretch:85%}
+
+/* club */
+.officers{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+@media (max-width:860px){.officers{grid-template-columns:1fr 1fr}}
+.off{border-radius:var(--r);padding:22px;border:1px solid var(--line);display:grid;gap:30px;min-width:0}
+.off:first-child{background:var(--k);color:#fff;border-color:var(--k)}
+.off:first-child .eyebrow{color:var(--y)}
+.off .nm{font:700 1.35rem/1.15 var(--f-display);font-stretch:90%}
+.ppl{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.ppl span{border:1px solid var(--line);border-radius:999px;padding:8px 15px;font-size:.93rem}
+.sub-h{margin-top:48px}
+.spons{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:14px}
+.spon{border:1px solid var(--line);border-radius:var(--r);background:#fff;padding:18px;display:grid;place-items:center;aspect-ratio:16/9;overflow:hidden;transition:transform .3s var(--ease),box-shadow .3s var(--ease),border-color .3s}
+.spon:hover{transform:translateY(-3px);border-color:var(--k);box-shadow:4px 4px 0 var(--y)}
+.spon img{width:100%;height:100%;object-fit:contain}
+@media (max-width:700px){.spons{grid-template-columns:1fr}}
+
+/* contact */
+.contact{display:grid;grid-template-columns:1.1fr 1fr;gap:14px}
+@media (max-width:860px){.contact{grid-template-columns:1fr}}
+.addr{font:800 clamp(1.9rem,3.6vw,2.8rem)/1 var(--f-display);font-stretch:80%;letter-spacing:-.02em;margin:14px 0 22px}
+.addr em{font-style:normal;background:var(--y);padding:0 .12em;border-radius:6px}
+.btns{display:flex;gap:10px;flex-wrap:wrap}
+.who{display:grid}
+.who .p{display:grid;grid-template-columns:1fr auto;gap:2px 16px;padding:16px 0;border-bottom:1px solid var(--line)}
+.who .p:first-child{padding-top:0}
+.who .p:last-child{border-bottom:0;padding-bottom:0}
+.who .p b{font-weight:650}
+.who .p span{color:var(--muted);font-size:.9rem;grid-column:1}
+.who .p a{grid-column:2;grid-row:1 / span 2;align-self:center;font-family:var(--f-mono);font-size:.92rem;text-decoration:none;background:var(--soft);padding:8px 12px;border-radius:999px;white-space:nowrap}
+.who .p a:hover{background:var(--y)}
+@media (max-width:440px){.who .p{grid-template-columns:1fr}.who .p a{grid-column:1;grid-row:auto;justify-self:start;margin-top:8px}}
+
+footer{border-top:1px solid var(--line);padding-block:26px;color:var(--muted);font-size:.88rem}
+footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center}
+footer .f-brand{display:flex;align-items:center;gap:10px}
+footer img{width:26px;height:26px;border-radius:50%;box-shadow:0 0 0 1.5px var(--k)}
+</style>
+</head>
+<body>
+
+
+<div class="top">
+  <div class="wrap">
+    <div class="bar">
+      <button class="logo" type="button" data-go="home" aria-label="Alberhart Tennis Club, home">
+        <img src="assets/logo.png" alt="" width="40" height="40">
+        <span><b>Alberhart</b><small>Tennis Club</small></span>
+      </button>
+      <nav class="tabs" role="tablist" aria-label="Sections" id="tabs">
+        <span class="pill" id="pill" aria-hidden="true"></span>
+        <button class="tab" role="tab" id="t-home" data-go="home" aria-controls="home">Home</button>
+        <button class="tab" role="tab" id="t-play" data-go="play" aria-controls="play">Play</button>
+        <button class="tab" role="tab" id="t-membership" data-go="membership" aria-controls="membership">Membership</button>
+        <button class="tab" role="tab" id="t-coaching" data-go="coaching" aria-controls="coaching">Coaching</button>
+        <button class="tab" role="tab" id="t-competitions" data-go="competitions" aria-controls="competitions">Competitions</button>
+        <button class="tab" role="tab" id="t-club" data-go="club" aria-controls="club">Club</button>
+        <button class="tab" role="tab" id="t-contact" data-go="contact" aria-controls="contact">Contact</button>
+      </nav>
+      <button class="cta cta-y" type="button" data-go="membership">Join <span class="arr" aria-hidden="true">→</span></button>
+    </div>
+  </div>
+</div>
+
+<main>
+<!-- ================= HOME ================= -->
+<div class="view" id="home" role="tabpanel" aria-labelledby="t-home">
+  <div class="wrap">
+    <section class="intro">
+      <div class="crest"><img src="assets/logo.png" alt="Alberhart Tennis Club logo" width="250" height="250"></div>
+      <div>
+        <span class="badge"><i>Open</i>New members are always welcome</span>
+        <h1>Alberhart<small>Tennis Club · Randhart</small></h1>
+        <p class="sub">All levels welcome. Saturday social tennis, weekday morning tennis, league teams, club championships and coaching in Randhart, Alberton.</p>
+        <div class="ctas">
+          <button class="cta cta-k" type="button" data-go="membership">Become a member <span class="arr" aria-hidden="true">→</span></button>
+          <button class="cta cta-o" type="button" data-go="play">When to play</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="pad">
+      <div class="bento">
+        <button class="tile dark span2 link" type="button" data-go="play">
+          <span class="go" aria-hidden="true">↗</span>
+          <span class="eyebrow">Saturday social</span>
+          <span class="big">13:30 – 18:00</span>
+          <p>Social tennis every Saturday afternoon. All levels welcome. Visitors R70.</p>
+          <span class="status" id="satStatus"><i></i><span id="satText">Every Saturday</span></span>
+        </button>
+        <button class="tile yel link" type="button" data-go="play">
+          <span class="go" aria-hidden="true">↗</span>
+          <span class="eyebrow">Morning tennis</span>
+          <h3>08:00 – 11:00</h3>
+          <div class="wkdays"><span>Tue</span><span>Thu</span><span>Fri</span></div>
+          <p class="visit" style="margin-top:auto">Visitors <b>R50</b></p>
+        </button>
+        <button class="tile link" type="button" data-go="membership">
+          <span class="go" aria-hidden="true">↗</span>
+          <span class="eyebrow">Membership 2026/27</span>
+          <h3>Join from</h3>
+          <span class="big mono" style="margin-top:auto">R1 300</span>
+          <p>Junior, all-in for the first year. Adults R2 260.</p>
+        </button>
+        <button class="tile span2 link" type="button" data-go="contact">
+          <span class="go" aria-hidden="true">↗</span>
+          <span class="eyebrow">Find us</span>
+          <span class="big">45 Roslyn Ave, Randhart</span>
+          <p>Corner of Roslyn and Lenie streets, Alberton 1449</p>
+        </button>
+        <button class="tile link" type="button" data-go="coaching">
+          <span class="go" aria-hidden="true">↗</span>
+          <span class="eyebrow">Coaching</span>
+          <h3>Real Athletes Tennis Academy</h3>
+          <p style="margin-top:auto">Lessons with coach Earl Grainger.</p>
+        </button>
+        <button class="tile link" type="button" data-go="competitions">
+          <span class="go" aria-hidden="true">↗</span>
+          <span class="eyebrow">Compete</span>
+          <h3>Leagues &amp; club champs</h3>
+          <p style="margin-top:auto">GETA leagues, Gauteng Bundes league and the annual club championships.</p>
+        </button>
+      </div>
+    </section>
+  </div>
+</div>
+
+<!-- ================= PLAY ================= -->
+<div class="view" id="play" role="tabpanel" aria-labelledby="t-play" hidden>
+  <div class="wrap">
+    <header class="page-head">
+      <p class="eyebrow">Play</p>
+      <h2>Come and <span class="hl">hit some balls.</span></h2>
+      <p class="lede">Social tennis is on Saturday afternoons. Morning tennis runs on weekday mornings. All levels are welcome, and visitors pay a small fee on the day.</p>
+    </header>
+    <section class="pad">
+      <div class="playgrid">
+        <div class="card dark">
+          <p class="eyebrow">Saturday social</p>
+          <p class="when">Saturdays<br>13:30 – 18:00</p>
+          <div class="facts">
+            <div class="fact"><span>Visitors</span><b class="mono">R70</b></div>
+            <div class="fact"><span>Level</span><b>All welcome</b></div>
+            <div class="fact"><span>Status</span><b id="satFact">Every week</b></div>
+          </div>
+        </div>
+        <div class="card yel">
+          <p class="eyebrow">Morning tennis</p>
+          <p class="when">Tue · Thu · Fri<br>08:00 – 11:00</p>
+          <div class="facts">
+            <div class="fact"><span>Visitors</span><b class="mono">R50</b></div>
+            <div class="fact"><span>Members</span><b>Morning tennis membership available</b></div>
+          </div>
+          <div class="contact-line"><span><b>Heather Friedenstein</b> · morning tennis</span><a href="tel:+27828511674">082 851 1674</a></div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<!-- ================= MEMBERSHIP ================= -->
+<div class="view" id="membership" role="tabpanel" aria-labelledby="t-membership" hidden>
+  <div class="wrap">
+    <header class="page-head">
+      <p class="eyebrow">Membership · 1 July 2026 – 30 June 2027</p>
+      <h2>Join the club in <span class="hl">three steps.</span></h2>
+      <p class="lede">The first-year totals below include the once-off R90 entrance fee, a R90 court key and R220 GETA &amp; TSA registration. Joining mid-season? Subscriptions are pro-rata to the end of June.</p>
+    </header>
+    <section class="pad">
+      <div class="plans">
+        <div class="plan feat"><span class="n">Adult</span><span class="p mono">R2 260</span><span class="s">R1 860 annual subscription</span></div>
+        <div class="plan"><span class="n">Morning tennis</span><span class="p mono">R1 900</span><span class="s">R1 500 annual subscription</span></div>
+        <div class="plan"><span class="n">Student / Pensioner</span><span class="p mono">R1 900</span><span class="s">R1 500 subs · full-time students, 63+</span></div>
+        <div class="plan"><span class="n">Junior</span><span class="p mono">R1 300</span><span class="s">R900 annual subscription</span></div>
+      </div>
+
+      <div class="seg" role="group" aria-label="Fee view">
+        <button type="button" id="segSum" aria-pressed="true">Summary</button>
+        <button type="button" id="segFull" aria-pressed="false">Full breakdown</button>
+      </div>
+      <div id="feeFull" hidden>
+        <div class="tbl">
+          <table class="fees">
+            <thead><tr><th scope="col">Per applicant</th><th scope="col">Adult</th><th scope="col">Morning</th><th scope="col">Student / Pens.</th><th scope="col">Junior</th><th scope="col">Family</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Entrance fee</th><td>R90</td><td>R90</td><td>R90</td><td>R90</td><td>R90</td></tr>
+              <tr><th scope="row">Annual subscription</th><td>R1 860</td><td>R1 500</td><td>R1 500</td><td>R900</td><td class="na">As per adult</td></tr>
+              <tr><th scope="row">Court key</th><td>R90</td><td>R90</td><td>R90</td><td>R90</td><td>R90 <span class="na">one key</span></td></tr>
+              <tr><th scope="row">GETA &amp; TSA registration</th><td>R220</td><td>R220</td><td>R220</td><td>R220</td><td class="na">As per adult</td></tr>
+              <tr class="tot"><th scope="row">Total</th><td>R2 260</td><td>R1 900</td><td>R1 900</td><td>R1 300</td><td class="na">See family note</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="notes">
+        <div class="note"><b>Family, one parent</b>Subscription waived for one school-going child.</div>
+        <div class="note"><b>Family, two parents</b>Subscriptions waived for all school-going children. One court key per family.</div>
+        <div class="note"><b>Who qualifies</b>Pensioners are 63 or older. Students must be full-time.</div>
+        <div class="note"><b>Resigning</b>Subs stay payable until a written resignation is received (Constitution, clause 40).</div>
+      </div>
+
+      <div class="split">
+        <div class="card">
+          <h3>How to join</h3>
+          <ol class="steps">
+            <li><p><b>Fill in the application form</b>Family applications also complete the back page with each child's details.<br><a href="https://alberhart.yolasite.com/resources/Application_Forms/July%202026%20to%20June%202027%20Application%20Form%20V1.pdf" target="_blank" rel="noopener">Download the 2026/27 form (PDF) ↗</a></p></li>
+            <li><p><b>Pay by EFT</b>The R90 entrance fee plus pro-rata subscriptions to the end of June. Use your name and surname as the reference.</p></li>
+            <li><p><b>Email the form and proof of payment</b>Send both to <span class="mono">Alberhart@gmail.com</span>.</p></li>
+          </ol>
+        </div>
+        <div class="card dark">
+          <p class="eyebrow">Banking details</p>
+          <dl class="kv">
+            <dt>Account</dt><dd>Alberhart Tennis Club</dd>
+            <dt>Bank</dt><dd>FNB, Brackenhurst</dd>
+            <dt>Branch</dt><dd>252242</dd>
+            <dt>Type</dt><dd>Cheque</dd>
+            <dt>Number</dt><dd>62111507721</dd>
+            <dt>Reference</dt><dd>Name Surname</dd>
+          </dl>
+          <button class="ghost" type="button" id="copyBank">Copy banking details</button>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<!-- ================= COACHING ================= -->
+<div class="view" id="coaching" role="tabpanel" aria-labelledby="t-coaching" hidden>
+  <div class="wrap">
+    <header class="page-head">
+      <p class="eyebrow">Coaching</p>
+      <h2>Lessons at <span class="hl">the club.</span></h2>
+      <p class="lede">Coaching at Alberhart is run by Real Athletes Tennis Academy. Contact the coach directly to book.</p>
+    </header>
+    <section class="pad">
+      <div class="coach">
+        <div class="card dark">
+          <p class="eyebrow">Academy</p>
+          <p class="big">Real Athletes <em>Tennis Academy</em></p>
+        </div>
+        <div class="card">
+          <p class="eyebrow">Coach</p>
+          <h3 style="margin-top:10px;font-size:1.8rem">Earl Grainger</h3>
+          <div class="who" style="margin-top:18px">
+            <div class="p"><b>Phone</b><span>Lesson bookings</span><a href="tel:+27764418634">076 441 8634</a></div>
+            <div class="p"><b>Email</b><span>Lesson bookings</span><a href="mailto:EarlGrainger@hotmail.com">EarlGrainger@hotmail.com</a></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<!-- ================= COMPETITIONS ================= -->
+<div class="view" id="competitions" role="tabpanel" aria-labelledby="t-competitions" hidden>
+  <div class="wrap">
+    <header class="page-head">
+      <p class="eyebrow">Competitions</p>
+      <h2>Leagues, champs <span class="hl">&amp; juniors.</span></h2>
+    </header>
+    <section class="pad">
+      <div class="leagues">
+        <div class="card"><span class="chip">League</span><h3>GETA leagues</h3><p style="color:var(--muted);margin-top:6px">Club teams play in the Gauteng East Tennis Association leagues.</p></div>
+        <div class="card"><span class="chip">League</span><h3>Gauteng Bundes league</h3><p style="color:var(--muted);margin-top:6px">Alberhart also enters teams in the Gauteng Bundes league.</p></div>
+        <div class="card dark"><span class="chip">Juniors</span><h3>Junior events</h3><p style="color:var(--k-muted);margin-top:6px">Junior news and events are posted on the club's Facebook page.</p><p style="margin-top:14px"><a href="https://www.facebook.com/heartoftennis/" target="_blank" rel="noopener" style="color:var(--y);font-weight:600">Alberhart on Facebook ↗</a></p></div>
+      </div>
+
+      <div class="res-head">
+        <div><p class="eyebrow">Club Championships</p><h3 style="margin-top:6px">2024 results</h3></div>
+        <div class="seg" role="group" aria-label="Filter events" id="resSeg" style="margin:0">
+          <button type="button" data-f="all" aria-pressed="true">All</button>
+          <button type="button" data-f="s" aria-pressed="false">Singles</button>
+          <button type="button" data-f="d" aria-pressed="false">Doubles</button>
+        </div>
+      </div>
+      <div class="tbl">
+        <table class="draw">
+          <thead><tr><th scope="col">Event</th><th scope="col">Winner</th><th scope="col">Runner-up</th></tr></thead>
+          <tbody id="resBody">
+            <tr data-t="s"><th scope="row">Ladies Singles</th><td class="w">Pinki Monthla</td><td class="r">Emma Clifton</td></tr>
+            <tr data-t="s"><th scope="row">Ladies Vets Singles</th><td class="w">Pinki Monthla</td><td class="r">Lefentse Nkosi</td></tr>
+            <tr data-t="s"><th scope="row">Men's Singles</th><td class="w">Vaughn Hunter</td><td class="r">Tremayne Mitchell</td></tr>
+            <tr data-t="s"><th scope="row">Men's Vets Singles</th><td class="w">Craig Fox</td><td class="r">Thys Visser</td></tr>
+            <tr data-t="d"><th scope="row">Ladies Doubles</th><td class="w">Pinki Monthla &amp; Nurisha Khan</td><td class="r">Lefentse Nkosi &amp; Tracey Meyer</td></tr>
+            <tr data-t="d"><th scope="row">Men's Doubles</th><td class="w">Vaughn Hunter &amp; Boitshepo Maake</td><td class="r">Tremayne Mitchell &amp; Darryl Fourie</td></tr>
+            <tr data-t="d"><th scope="row">Ladies Vets Doubles<span class="chk">check</span></th><td class="w">Pinki Monthla &amp; Tracey Meyer</td><td class="r">Lefentse Nkosi &amp; Tracey Meyer</td></tr>
+            <tr data-t="d"><th scope="row">Men's Vets Doubles</th><td class="w">Louise Cronje &amp; Pieter du Plessis</td><td class="r">Marco da Silva &amp; Thys Visser</td></tr>
+            <tr data-t="d"><th scope="row">Mixed Doubles</th><td class="w">Tremayne Mitchell &amp; Lilitha Ndugane</td><td class="r">Vaughn Hunter &amp; Lefentse Nkosi</td></tr>
+            <tr data-t="d"><th scope="row">Variable Strength</th><td class="w">Jason Moss &amp; Darrell Muttitt</td><td class="r">Aston Bowden &amp; Malcolm Moriarty</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="color:var(--muted);font-size:.9rem;margin-top:12px">2025 results to be added.</p>
+    </section>
+  </div>
+</div>
+
+<!-- ================= CLUB ================= -->
+<div class="view" id="club" role="tabpanel" aria-labelledby="t-club" hidden>
+  <div class="wrap">
+    <header class="page-head">
+      <p class="eyebrow">The club</p>
+      <h2>Run by members, <span class="hl">for members.</span></h2>
+      <p class="lede">Committee for 2024/25. Updated after each AGM.</p>
+    </header>
+    <section class="pad">
+      <div class="officers">
+        <div class="off"><span class="eyebrow">Chairman</span><span class="nm">Louis Cronje</span></div>
+        <div class="off"><span class="eyebrow">Vice-Chairman</span><span class="nm">Malcolm Moriarty</span></div>
+        <div class="off"><span class="eyebrow">Secretary</span><span class="nm">Gerhard Mentz</span></div>
+        <div class="off"><span class="eyebrow">Treasurer</span><span class="nm">Darryl Fourie</span></div>
+      </div>
+      <p class="eyebrow sub-h">Committee members</p>
+      <div class="ppl"><span>Thys Visser</span><span>Heather Friedenstein</span><span>Ryno Venter</span><span>Pieter du Plessis</span><span>Nimrod Vanto</span><span>Martin Teichmann</span><span>Marc Wiemann</span><span>Izak Wolfaardt</span><span>Marco da Silva</span></div>
+
+      <p class="eyebrow sub-h">Our sponsors</p>
+      <div class="spons">
+        <div class="spon"><img src="assets/sponsor-spur.jpg" alt="Spur Steak Ranches, Little Eagle at New Market Mall, tel 011 869 5371" loading="lazy" width="480" height="262"></div>
+        <div class="spon"><img src="assets/sponsor-rocomamas.jpg" alt="RocoMamas at New Market Mall, tel 011 907 5453" loading="lazy" width="480" height="185"></div>
+        <div class="spon"><img src="assets/sponsor-panarottis.jpg" alt="Panarottis Pizza and Pasta at New Market Mall, tel 011 907 5258" loading="lazy" width="480" height="249"></div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<!-- ================= CONTACT ================= -->
+<div class="view" id="contact" role="tabpanel" aria-labelledby="t-contact" hidden>
+  <div class="wrap">
+    <header class="page-head">
+      <p class="eyebrow">Contact</p>
+      <h2>Come and <span class="hl">say hello.</span></h2>
+    </header>
+    <section class="pad">
+      <div class="contact">
+        <div class="card">
+          <p class="eyebrow">Courts &amp; clubhouse</p>
+          <p class="addr">45 Roslyn Avenue,<br><em>Randhart</em>, Alberton 1449</p>
+          <p style="color:var(--muted);margin:-8px 0 20px">Corner of Roslyn and Lenie streets</p>
+          <div class="btns">
+            <a class="cta cta-k" href="https://www.google.com/maps/search/?api=1&amp;query=Alberhart+Tennis+Club%2C+45+Roslyn+Ave%2C+Randhart%2C+Alberton" target="_blank" rel="noopener">Google Maps <span class="arr" aria-hidden="true">↗</span></a>
+            <a class="cta cta-o" href="https://www.waze.com/live-map/directions/alberhart-tennis-club-roslyn-ave-randhart,-alberton?to=place.w.18417153.184237067.13200891" target="_blank" rel="noopener">Waze <span class="arr" aria-hidden="true">↗</span></a>
+          </div>
+          <p class="eyebrow" style="margin-top:28px">Email</p>
+          <p class="mono" style="margin-top:8px;font-size:1.1rem"><a href="mailto:Alberhart@gmail.com">Alberhart@gmail.com</a></p>
+          <button class="ghost l" type="button" id="copyEmail">Copy email</button>
+        </div>
+        <div class="card">
+          <div class="who">
+            <div class="p"><b>Louis Cronje</b><span>Chairman · membership</span><a href="tel:+27825795291">082 579 5291</a></div>
+            <div class="p"><b>Heather Friedenstein</b><span>Morning tennis</span><a href="tel:+27828511674">082 851 1674</a></div>
+            <div class="p"><b>Earl Grainger</b><span>Coaching</span><a href="tel:+27764418634">076 441 8634</a></div>
+            <div class="p"><b>Facebook</b><span>News, juniors and photos</span><a href="https://www.facebook.com/heartoftennis/" target="_blank" rel="noopener">Follow ↗</a></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p class="f-brand"><img src="assets/logo.png" alt="" width="26" height="26">Alberhart Tennis Club · Randhart, Alberton</p>
+    <p>Members register with GETA and Tennis South Africa</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  /* ---------- tabs ---------- */
+  var VIEWS=["home","play","membership","coaching","competitions","club","contact"];
+  var tabs=[].slice.call(document.querySelectorAll(".tab")), pill=document.getElementById("pill"), tabsEl=document.getElementById("tabs");
+  function movePill(){
+    var a=document.querySelector('.tab[aria-selected="true"]'); if(!a)return;
+    pill.style.width=a.offsetWidth+"px"; pill.style.transform="translateX("+a.offsetLeft+"px)";
+  }
+  function show(id,push){
+    if(VIEWS.indexOf(id)<0)id="home";
+    VIEWS.forEach(function(v){document.getElementById(v).hidden=(v!==id)});
+    tabs.forEach(function(t){var on=t.dataset.go===id;t.setAttribute("aria-selected",on?"true":"false");t.tabIndex=on?0:-1});
+    var a=document.getElementById("t-"+id);
+    if(a&&tabsEl.scrollWidth>tabsEl.clientWidth){tabsEl.scrollTo({left:a.offsetLeft-tabsEl.clientWidth/2+a.offsetWidth/2,behavior:"smooth"})}
+    movePill();
+    if(push){try{history.replaceState(null,"","#"+id)}catch(e){}}
+    window.scrollTo(0,0);
+  }
+  document.addEventListener("click",function(e){var g=e.target.closest("[data-go]");if(g){e.preventDefault();show(g.dataset.go,true)}});
+  tabsEl.addEventListener("keydown",function(e){
+    if(e.key!=="ArrowRight"&&e.key!=="ArrowLeft")return;
+    var i=tabs.findIndex(function(t){return t.getAttribute("aria-selected")==="true"});
+    e.preventDefault();var n=tabs[(i+(e.key==="ArrowRight"?1:-1)+tabs.length)%tabs.length];show(n.dataset.go,true);n.focus();
+  });
+  window.addEventListener("hashchange",function(){show(location.hash.slice(1),false)});
+  window.addEventListener("resize",movePill);
+  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(movePill);
+
+  /* ---------- Saturday social status (South African time) ---------- */
+  function sast(){
+    try{var p=new Intl.DateTimeFormat("en-GB",{timeZone:"Africa/Johannesburg",weekday:"short",hour:"2-digit",minute:"2-digit",hour12:false}).formatToParts(new Date()),o={};
+      p.forEach(function(x){o[x.type]=x.value});return {d:{Sun:0,Mon:1,Tue:2,Wed:3,Thu:4,Fri:5,Sat:6}[o.weekday],m:(parseInt(o.hour,10)%24)*60+parseInt(o.minute,10)}}
+    catch(e){var t=new Date();return {d:t.getDay(),m:t.getHours()*60+t.getMinutes()}}
+  }
+  function dateIn(days){
+    try{return new Intl.DateTimeFormat("en-ZA",{timeZone:"Africa/Johannesburg",day:"numeric",month:"short"}).format(new Date(Date.now()+days*864e5))}catch(e){return ""}
+  }
+  function status(){
+    var n=sast(), st=document.getElementById("satStatus"), tx=document.getElementById("satText"), f=document.getElementById("satFact"), msg, fact, on=false;
+    if(n.d===6&&n.m>=810&&n.m<1080){on=true;msg="On court now · until 18:00";fact="On now"}
+    else if(n.d===6&&n.m<810){msg="Today at 13:30";fact="Today"}
+    else{var ahead=(6-n.d+7)%7||7;msg=(ahead===1?"Tomorrow":"This Saturday")+" · "+dateIn(ahead);fact=ahead===1?"Tomorrow":"Sat "+dateIn(ahead)}
+    st.classList.toggle("on",on);tx.textContent=msg;f.textContent=fact;
+  }
+  status(); setInterval(status,60000);
+
+  /* ---------- toggles ---------- */
+  var sSum=document.getElementById("segSum"),sFull=document.getElementById("segFull"),full=document.getElementById("feeFull");
+  sSum.onclick=function(){sSum.setAttribute("aria-pressed","true");sFull.setAttribute("aria-pressed","false");full.hidden=true};
+  sFull.onclick=function(){sFull.setAttribute("aria-pressed","true");sSum.setAttribute("aria-pressed","false");full.hidden=false};
+  [].forEach.call(document.querySelectorAll("#resSeg button"),function(b){b.onclick=function(){
+    [].forEach.call(document.querySelectorAll("#resSeg button"),function(x){x.setAttribute("aria-pressed",x===b?"true":"false")});
+    [].forEach.call(document.querySelectorAll("#resBody tr"),function(r){r.hidden=!(b.dataset.f==="all"||r.dataset.t===b.dataset.f)});
+  }});
+
+  /* ---------- copy ---------- */
+  function copy(btn,text){btn.addEventListener("click",function(){
+    var o=btn.textContent,ok=function(){btn.textContent="Copied";setTimeout(function(){btn.textContent=o},1600)};
+    function fb(){var t=document.createElement("textarea");t.value=text;document.body.appendChild(t);t.select();try{document.execCommand("copy")}catch(e){}t.remove();ok()}
+    try{navigator.clipboard.writeText(text).then(ok,fb)}catch(e){fb()}
+  })}
+  copy(document.getElementById("copyBank"),"Alberhart Tennis Club\nFNB Brackenhurst\nBranch code: 252242\nCheque account: 62111507721\nReference: Name Surname");
+  copy(document.getElementById("copyEmail"),"Alberhart@gmail.com");
+
+  show(location.hash.slice(1)||"home",false);
+})();
+</script>
+
+</body>
+</html>
