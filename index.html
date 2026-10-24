@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#FFD21A">
+<meta name="theme-color" content="#FFFFFF">
 <style>[hidden]{display:none!important}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}img{max-width:100%}</style>
 <title>Alberhart Tennis Club</title>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -26,7 +26,8 @@
   color-scheme:light;
 }
 *{box-sizing:border-box}
-body{margin:0;background:var(--paper);color:var(--ink);font:400 1rem/1.6 var(--f-body);-webkit-font-smoothing:antialiased}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 1rem/1.6 var(--f-body);-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent}
 a{color:inherit}
 button{font:inherit;color:inherit}
 img{max-width:100%;display:block}
@@ -39,8 +40,8 @@ p{margin:0}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 
 /* ---------- header + tabs ---------- */
-body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--paper)}
-.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;padding-block:12px;background:linear-gradient(var(--paper) 60%,rgba(255,255,255,0))}
+body::before{content:"";position:fixed;top:0;left:0;right:0;height:env(safe-area-inset-top,0px);z-index:30;background:var(--paper)}
+.top{position:-webkit-sticky;position:sticky;top:env(safe-area-inset-top,0px);z-index:20;padding-block:12px;background:linear-gradient(var(--paper) 60%,rgba(255,255,255,0))}
 .bar{display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.82);backdrop-filter:saturate(1.4) blur(14px);-webkit-backdrop-filter:saturate(1.4) blur(14px);border:1px solid var(--line);border-radius:999px;padding:7px 8px 7px 8px;box-shadow:0 10px 30px -18px rgba(31,26,23,.35)}
 .logo{display:flex;align-items:center;gap:10px;flex:none;cursor:pointer;background:none;border:0;padding:0;text-align:left}
 .logo img{width:40px;height:40px;border-radius:50%;box-shadow:0 0 0 2px var(--k)}
@@ -80,17 +81,17 @@ section.pad{padding-bottom:72px}
 
 /* ---------- home intro ---------- */
 .intro{display:grid;grid-template-columns:auto 1fr;gap:clamp(24px,4vw,56px);align-items:center;padding-block:36px 44px}
-.crest{position:relative;width:clamp(150px,22vw,250px);aspect-ratio:1;max-width:100%}
+.crest{position:relative;width:clamp(150px,22vw,250px);height:clamp(150px,22vw,250px);flex:none}
 .crest img{width:100%;height:100%;border-radius:50%;box-shadow:0 0 0 5px var(--k),0 28px 40px -24px rgba(31,26,23,.55);transition:transform .6s var(--ease)}
 .crest:hover img{transform:rotate(-8deg)}
-.crest::after{content:"";position:absolute;inset:-14px;border-radius:50%;border:1.5px dashed var(--line)}
+.crest::after{content:"";position:absolute;top:-14px;right:-14px;bottom:-14px;left:-14px;border-radius:50%;border:1.5px dashed var(--line)}
 .badge{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:999px;padding:6px 12px 6px 6px;font-size:.85rem;font-weight:550}
 .badge i{background:var(--y);border:1px solid var(--k);border-radius:999px;padding:2px 9px;font:600 .7rem/1.4 var(--f-mono);font-style:normal;letter-spacing:.06em;text-transform:uppercase}
 .intro h1{font-size:clamp(3rem,8vw,6.2rem);font-weight:800;font-stretch:78%;line-height:.88;letter-spacing:-.035em;margin:18px 0 18px}
 .intro h1 small{display:block;font-size:.42em;font-weight:600;font-stretch:100%;letter-spacing:-.01em;margin-top:.25em;color:var(--muted)}
 .intro p.sub{font-size:1.12rem;color:var(--muted);max-width:52ch}
 .intro .ctas{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}
-@media (max-width:700px){.intro{grid-template-columns:1fr;justify-items:start;padding-top:20px}.crest{width:130px}}
+@media (max-width:700px){.intro{grid-template-columns:1fr;justify-items:start;padding-top:20px;gap:28px}.crest{width:120px;height:120px;margin-left:14px}}
 
 /* bento */
 .bento{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
@@ -145,7 +146,7 @@ section.pad{padding-bottom:72px}
 .card.dark .contact-line a{background:var(--y);color:var(--k)}
 
 /* ---------- tables ---------- */
-.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r)}
+.tbl{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--line);border-radius:var(--r)}
 table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums}
 th,td{padding:14px 18px;text-align:left;border-bottom:1px solid var(--line)}
 thead th{font:500 .72rem/1.2 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);background:var(--soft);white-space:nowrap}
@@ -162,7 +163,7 @@ tbody tr:last-child>*{border-bottom:0}
 .plans{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:14px}
 .plan{border:1px solid var(--line);border-radius:var(--r);padding:22px;display:grid;gap:6px;align-content:start;min-width:0}
 .plan .n{font:700 1.05rem/1.2 var(--f-display)}
-.plan .p{font:800 2.3rem/1 var(--f-display);font-stretch:80%;letter-spacing:-.02em}
+.plan .p{font:800 clamp(1.7rem,7vw,2.3rem)/1 var(--f-display);font-stretch:80%;letter-spacing:-.02em;white-space:nowrap}
 .plan .s{color:var(--muted);font-size:.86rem}
 .plan.feat{background:var(--y);border-color:var(--k)}
 .plan.feat .s{color:var(--y-ink)}
@@ -244,6 +245,54 @@ footer{border-top:1px solid var(--line);padding-block:26px;color:var(--muted);fo
 footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center}
 footer .f-brand{display:flex;align-items:center;gap:10px}
 footer img{width:26px;height:26px;border-radius:50%;box-shadow:0 0 0 1.5px var(--k)}
+
+/* ---------- compatibility fallbacks ---------- */
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.bar{background:#fff}}
+@supports not (aspect-ratio:1/1){.spon{height:190px}}
+@media (hover:none){.tile.link:hover,.spon:hover,.cta:hover,.crest:hover img{transform:none}}
+.tile.link:active,.cta:active,.dk:active{transform:scale(.98)}
+
+/* ---------- phones ---------- */
+.dock,.sheet-panel .sheet-h{display:none}
+@media (max-width:760px){
+  .tabs{display:none}
+  .bar{flex-wrap:nowrap;border-radius:999px}
+  .top{padding-block:10px}
+  .page-head{padding-block:22px 22px}
+  section.pad{padding-bottom:40px}
+  body{padding-bottom:calc(92px + env(safe-area-inset-bottom,0px))}
+  .dock{display:grid;grid-template-columns:repeat(5,1fr);gap:2px;position:fixed;z-index:25;
+    left:max(10px,env(safe-area-inset-left,0px));right:max(10px,env(safe-area-inset-right,0px));bottom:calc(10px + env(safe-area-inset-bottom,0px));
+    background:var(--k);border-radius:22px;padding:6px;box-shadow:0 16px 34px -12px rgba(31,26,23,.6)}
+  .dk{border:0;background:none;color:#BDB6AC;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;
+    min-height:54px;padding:6px 2px;border-radius:16px;font:600 .68rem/1 var(--f-body);cursor:pointer;transition:background .2s,color .2s}
+  .dk svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+  .dk[aria-current="page"]{background:var(--y);color:var(--k)}
+  /* results as cards */
+  .draw thead{display:none}
+  .draw,.draw tbody,.draw tr,.draw th,.draw td{display:block;width:100%}
+  .draw tr{padding:14px 16px;border-bottom:1px solid var(--line)}
+  .draw tbody tr:last-child{border-bottom:0}
+  .draw tbody th,.draw td{padding:0;border:0}
+  .draw tbody th{white-space:normal;margin-bottom:6px;font:600 .7rem/1.3 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+  .draw td.r{font-size:.9rem;margin-top:3px;padding-left:19px}
+  .draw td.r::before{content:"Runner-up · "}
+  .res-head .seg{width:100%}
+  .res-head .seg button{flex:1}
+  .who .p a{padding:10px 14px}
+  .contact-line a{padding:10px 14px}
+}
+/* "More" sheet */
+.sheet{position:fixed;top:0;left:0;right:0;bottom:0;z-index:40}
+.sheet-bg{position:absolute;top:0;left:0;right:0;bottom:0;width:100%;border:0;background:rgba(31,26,23,.45);cursor:pointer;animation:fade .25s ease both}
+.sheet-panel{position:absolute;left:0;right:0;bottom:0;background:var(--paper);border-radius:26px 26px 0 0;
+  padding:10px max(16px,env(safe-area-inset-right,0px)) calc(22px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));animation:up .32s var(--ease) both}
+.sheet-panel .grab{width:44px;height:5px;border-radius:9px;background:var(--line);margin:4px auto 14px}
+.sheet-item{display:flex;align-items:center;justify-content:space-between;width:100%;border:0;background:var(--soft);border-radius:18px;padding:18px 18px;margin-top:8px;font:700 1.15rem/1.2 var(--f-display);text-align:left;cursor:pointer;color:var(--ink)}
+.sheet-item span{font:500 .82rem/1.3 var(--f-body);color:var(--muted);display:block;margin-top:2px}
+.sheet-item i{font-style:normal;width:34px;height:34px;border-radius:50%;background:var(--y);display:grid;place-items:center;flex:none;border:1px solid var(--k)}
+@keyframes up{from{transform:translateY(100%)}to{transform:none}}
+@keyframes fade{from{opacity:0}to{opacity:1}}
 </style>
 </head>
 <body>
@@ -568,6 +617,24 @@ footer img{width:26px;height:26px;border-radius:50%;box-shadow:0 0 0 1.5px var(-
 </div>
 </main>
 
+
+<nav class="dock" aria-label="Sections">
+  <button class="dk" type="button" data-go="home"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg>Home</button>
+  <button class="dk" type="button" data-go="play"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6c3.4 3.5 3.4 9.3 0 12.8M18.4 5.6c-3.4 3.5-3.4 9.3 0 12.8"/></svg>Play</button>
+  <button class="dk" type="button" data-go="membership"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="4"/><path d="M2 21c0-4 3-6.5 7-6.5s7 2.5 7 6.5M19 8v6M16 11h6"/></svg>Join</button>
+  <button class="dk" type="button" data-go="competitions"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4h10v4a5 5 0 0 1-10 0zM7 6H4v1a3 3 0 0 0 3 3M17 6h3v1a3 3 0 0 1-3 3M12 13v4M8 21h8M9.5 17h5"/></svg>Compete</button>
+  <button class="dk" type="button" id="moreBtn" aria-haspopup="dialog" aria-controls="sheet"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg>More</button>
+</nav>
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-label="More sections" hidden>
+  <button class="sheet-bg" type="button" data-close aria-label="Close"></button>
+  <div class="sheet-panel">
+    <div class="grab" aria-hidden="true"></div>
+    <button class="sheet-item" type="button" data-go="coaching"><div>Coaching<span>Real Athletes Tennis Academy</span></div><i aria-hidden="true">→</i></button>
+    <button class="sheet-item" type="button" data-go="club"><div>Club<span>Committee and sponsors</span></div><i aria-hidden="true">→</i></button>
+    <button class="sheet-item" type="button" data-go="contact"><div>Contact<span>Address, maps and phone numbers</span></div><i aria-hidden="true">→</i></button>
+  </div>
+</div>
+
 <footer>
   <div class="wrap">
     <p class="f-brand"><img src="assets/logo.png" alt="" width="26" height="26">Alberhart Tennis Club · Randhart, Alberton</p>
@@ -589,12 +656,24 @@ footer img{width:26px;height:26px;border-radius:50%;box-shadow:0 0 0 1.5px var(-
     VIEWS.forEach(function(v){document.getElementById(v).hidden=(v!==id)});
     tabs.forEach(function(t){var on=t.dataset.go===id;t.setAttribute("aria-selected",on?"true":"false");t.tabIndex=on?0:-1});
     var a=document.getElementById("t-"+id);
-    if(a&&tabsEl.scrollWidth>tabsEl.clientWidth){tabsEl.scrollTo({left:a.offsetLeft-tabsEl.clientWidth/2+a.offsetWidth/2,behavior:"smooth"})}
+    if(a&&tabsEl.scrollWidth>tabsEl.clientWidth){var L=a.offsetLeft-tabsEl.clientWidth/2+a.offsetWidth/2;try{tabsEl.scrollTo({left:L,behavior:"smooth"})}catch(e){tabsEl.scrollLeft=L}}
+    var more=["coaching","club","contact"].indexOf(id)>-1;
+    [].forEach.call(document.querySelectorAll(".dk"),function(d){var on=d.id==="moreBtn"?more:d.dataset.go===id;if(on)d.setAttribute("aria-current","page");else d.removeAttribute("aria-current")});
+    closeSheet();
     movePill();
     if(push){try{history.replaceState(null,"","#"+id)}catch(e){}}
-    window.scrollTo(0,0);
+    try{window.scrollTo(0,0)}catch(e){}
   }
-  document.addEventListener("click",function(e){var g=e.target.closest("[data-go]");if(g){e.preventDefault();show(g.dataset.go,true)}});
+  var sheet=document.getElementById("sheet"),moreBtn=document.getElementById("moreBtn");
+  function closeSheet(){if(!sheet.hidden){sheet.hidden=true;document.body.style.overflow=""}}
+  function openSheet(){sheet.hidden=false;document.body.style.overflow="hidden";var f=sheet.querySelector(".sheet-item");if(f)f.focus()}
+  moreBtn.addEventListener("click",function(){sheet.hidden?openSheet():closeSheet()});
+  document.addEventListener("keydown",function(e){if(e.key==="Escape")closeSheet()});
+  document.addEventListener("click",function(e){
+    var t=e.target; if(t.nodeType!==1)t=t.parentNode;
+    if(t.closest&&t.closest("[data-close]")){closeSheet();return}
+    var g=t.closest?t.closest("[data-go]"):null; if(g){e.preventDefault();show(g.dataset.go,true)}
+  });
   tabsEl.addEventListener("keydown",function(e){
     if(e.key!=="ArrowRight"&&e.key!=="ArrowLeft")return;
     var i=tabs.findIndex(function(t){return t.getAttribute("aria-selected")==="true"});
